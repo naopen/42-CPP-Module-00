@@ -1,6 +1,7 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 PhoneBook::PhoneBook() : currentIndex(0), totalContacts(0) {}
 
@@ -58,9 +59,11 @@ void PhoneBook::searchContact() const
     {
         std::cout << "Invalid index!" << std::endl;
         std::cin.clear();
-        std::cin.ignore(10000, '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
+
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     contacts[index].displayFull();
 }
