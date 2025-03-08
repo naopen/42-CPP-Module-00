@@ -11,7 +11,7 @@ std::string getInput(const std::string &prompt)
         std::cout << prompt;
         std::getline(std::cin, input);
         if (std::cin.eof())
-            exit(0);
+			return "";
         if (input.empty())
             std::cout << "Field cannot be empty. Please try again." << std::endl;
     } while (input.empty());
