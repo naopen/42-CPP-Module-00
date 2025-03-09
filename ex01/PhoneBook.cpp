@@ -1,14 +1,15 @@
 #include "PhoneBook.hpp"
+#include "utils.hpp"
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <cstdlib>
 
 // 定数として定義
 namespace Config {
     const int MAX_CONTACTS = 8;
     const int DISPLAY_WIDTH = 10;
 }
-
 
 PhoneBook::PhoneBook() : currentIndex(0), totalContacts(0) {}
 
@@ -58,17 +59,21 @@ void PhoneBook::searchContact() const {
 
     displayContactList();
 
-    int index;
-    std::cout << "\nEnter index to display: ";
-    std::cin >> index;
+    std::string indexStr = getInputOrExit("\nEnter index to display: ");
 
-    if (std::cin.fail() || index < 0 || index >= totalContacts) {
-        std::cout << "Invalid index!" << std::endl;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    // 入力が有効な数値であることを確認
+    if (!isValidNumber(indexStr)) {
+        std::cout << "Invalid index! Please enter a number." << std::endl;
         return;
     }
-    // index入力後の不要な改行を無視
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    // 文字列を整数に変換
+    int index = std::atoi(indexStr.c_str());
+
+    if (index < 0 || index >= totalContacts) {
+        std::cout << "Invalid index! Index out of range." << std::endl;
+        return;
+    }
+
     contacts[index].displayFull();
 }
