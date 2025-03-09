@@ -25,7 +25,3 @@ void Contact::displayFull() const {
     std::cout << "Phone Number: " << phoneNumber << std::endl;
     std::cout << "Darkest Secret: " << darkestSecret << std::endl;
 }
-
-bool Contact::isEmpty() const {
-    return firstName.empty();
-}

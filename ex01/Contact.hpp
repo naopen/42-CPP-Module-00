@@ -21,7 +21,6 @@ public:
     std::string getLastName() const;
     std::string getNickname() const;
     void displayFull() const;
-    bool isEmpty() const;
 };
 
 #endif

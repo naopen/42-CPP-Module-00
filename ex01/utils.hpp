@@ -4,10 +4,10 @@
 #include <string>
 
 namespace ErrorMessage {
-    extern const std::string EMPTY_FIELD;
-    extern const std::string INVALID_PHONE_FORMAT;
-    extern const std::string INVALID_COMMAND;
-    extern const std::string INPUT_TERMINATED;
+    const std::string EMPTY_FIELD = "Field cannot be empty. Please try again.";
+    const std::string INVALID_PHONE_FORMAT = "Invalid phone number format. Please use digits, spaces, and hyphens only.";
+    const std::string INVALID_COMMAND = "Invalid command. Please use ADD, SEARCH, or EXIT.";
+    const std::string INPUT_TERMINATED = "Input terminated. Exiting program.";
 }
 
 // 入力を取得し、EOFまたは空文字列の場合はプログラムを終了
