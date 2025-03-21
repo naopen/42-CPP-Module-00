@@ -1,24 +1,15 @@
-// ************************************************************************** //
-//                                                                            //
-//                Account.cpp for GlobalBanksters United                      //
-//                Created on  : Thu Nov 20 19:43:15 1989                      //
-//                Last update : Wed Jan 04 14:54:06 1992                      //
-//                Made by : Brad "Buddy" McLane <bm@gbu.com>                  //
-//                                                                            //
-// ************************************************************************** //
-
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 #include "Account.hpp"
 
-// 静的メンバ変数の初期化
+// Static member variable initialization
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// 現在の時刻を [YYYYMMDD_HHMMSS] 形式で表示
+// Current time in [YYYYMMDD_HHMMSS] format
 void Account::_displayTimestamp(void)
 {
     time_t rawtime;
@@ -31,31 +22,31 @@ void Account::_displayTimestamp(void)
     std::cout << buffer << " ";
 }
 
-// アカウント数の取得
+// Number of accounts
 int Account::getNbAccounts(void)
 {
     return _nbAccounts;
 }
 
-// 総額の取得
+// Total amount
 int Account::getTotalAmount(void)
 {
     return _totalAmount;
 }
 
-// 入金回数の取得
+// Number of deposits
 int Account::getNbDeposits(void)
 {
     return _totalNbDeposits;
 }
 
-// 出金回数の取得
+// Number of withdrawals
 int Account::getNbWithdrawals(void)
 {
     return _totalNbWithdrawals;
 }
 
-// アカウント情報の表示
+// Display accounts information
 void Account::displayAccountsInfos(void)
 {
     _displayTimestamp();
@@ -66,13 +57,13 @@ void Account::displayAccountsInfos(void)
               << std::endl;
 }
 
-// デフォルトコンストラクタ（private）
+// Default constructor (private)
 Account::Account(void)
     : _accountIndex(0), _amount(0), _nbDeposits(0), _nbWithdrawals(0)
 {
 }
 
-// 初期入金付きコンストラクタ
+// Constructor with initial deposit
 Account::Account(int initial_deposit)
     : _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
@@ -86,7 +77,7 @@ Account::Account(int initial_deposit)
               << ";created" << std::endl;
 }
 
-// デストラクタ
+// Destructor
 Account::~Account(void)
 {
     _displayTimestamp();
@@ -95,7 +86,7 @@ Account::~Account(void)
               << ";closed" << std::endl;
 }
 
-// 入金処理
+// Deposit
 void Account::makeDeposit(int deposit)
 {
     int p_amount = _amount;
@@ -113,7 +104,7 @@ void Account::makeDeposit(int deposit)
               << std::endl;
 }
 
-// 出金処理
+// Withdraw
 bool Account::makeWithdrawal(int withdrawal)
 {
     _displayTimestamp();
@@ -138,13 +129,13 @@ bool Account::makeWithdrawal(int withdrawal)
     return true;
 }
 
-// 残高確認
+// Check amount
 int Account::checkAmount(void) const
 {
     return _amount;
 }
 
-// アカウント状態の表示
+// Display account status
 void Account::displayStatus(void) const
 {
     _displayTimestamp();
